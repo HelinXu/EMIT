@@ -45,18 +45,25 @@ In this section, we further formulate the task.
 Image-text pairing aims to match all the images from the same product to all the text tags. In this paper, we use **product** to refer to a single product on sale on Taobao, which often comes in several styles or options with typically several images under each style or option. **Optional tags** refers to the text-based tags that tell different styles from each other within the same product. For example, a certain kind of skirt is a product, and this product comes in three different styles, pink, white, and black. The text labels *pink, white, black* are the optional tags for this certain product.
 
 For a certain product, we have $n$ images in total
+
 $$
 \mathcal { I } = \{I_1, I_2, ..., I_n\}
 $$
+
 with $m$ different optional tags,
+
 $$
 \mathcal { T } = \{T_1, T_2, ..., T_m\}
 $$
+
 For each product, we output the image-text pairs for all images in the product,
+
 $$
 (I_1, T_{I_1}), (I_2, T_{I_2}), ..., (I_n, T_{I_n})
 $$
+
 Where tags are selected from its optional tags,
+
 $$
 \forall i \in \{ 1,2 , \ldots , n \} , I _ { i } \in \mathcal { I } , T _ { I _ { i } } \in \mathcal { T }
 $$
@@ -115,7 +122,7 @@ Last, we further propose a heuristic-based bagging method that takes into accoun
 
 This process is rather fast. In practice, we do the Jieba word cutting, sorting, and filtering beforehand, save the top 64 dominating semantic labels to label set $ \mathcal S $, and generate the vector-like text-embedding on the fly.
 
-**Text embedding.** We retrieve text embedding $F_T$ by looking into the $\mathcal S$, and assigning 1 to $F_t [i]$ if $\mathcal S [i]$ is a substring in the optional tag.
+**Text embedding.** We retrieve text embedding $F_{ T }$ by looking into the $\mathcal{ S }$ , and assigning 1 to $F_{ t }[i]$ if $\mathcal{ S }[i]$ is a substring in the optional tag.
 
 **Image embedding.** We reshape all images to 224*224 and use a DenseNet-like neural network as the backbone. In the last layer, we add a fully connected layer with 64 output channels indicating 64 different semantic labels that we are learning, and we would like the image embedding $F_I$ to match the text embedding on each corresponding channel.
 
